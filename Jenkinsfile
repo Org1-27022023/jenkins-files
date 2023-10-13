@@ -10,10 +10,7 @@ pipeline {
         timestamps()
     }
     
-    triggers {
-        pollSCM '* * * * *'
-        cron '* * * * *'
-    }
+    
 
     stages {
         stage('Checkout code') {
