@@ -7,7 +7,7 @@ pipeline {
 
     options {
         buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '3', numToKeepStr: '3')
-        timestamps
+        timestamps()
     }
    
     stages {
