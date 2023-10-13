@@ -7,7 +7,7 @@ tools{
 maven "maven 3.9.4"
 }
 
-stages {
+stages{
 
 stage('Checkout code'){
 steps{
@@ -34,7 +34,7 @@ bat "mvn deploy"
 }
 
 
-stage('upload artifacts'){
+stage('deploy to tomcat'){
 steps{
 bat "copy C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\declarative\\target\\maven-web-application.war C:\\Users\\ADMIN\\Downloads\\apache-tomcat-9.0.73\\apache-tomcat-9.0.73\\webapps"
 }
