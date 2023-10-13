@@ -7,7 +7,7 @@ tools{
 maven "maven 3.9.4"
 }
 
-stages{
+stages {
 
 stage('Checkout code'){
 steps{
@@ -33,11 +33,6 @@ bat "mvn deploy"
 }
 }
 
-stage('shell'){
-steps{
-bat "dir"
-}
-}
 
 stage('upload artifacts'){
 steps{
