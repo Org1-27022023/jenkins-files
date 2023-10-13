@@ -1,12 +1,11 @@
-timestamps {
-    pipeline {
+pipeline {
         agent any
         
         tools {
             maven "maven 3.9.4"
             jdk "jdk-11" // You can specify the desired JDK version here
         }
-
+timestamps {
         stages {
             stage('Checkout code') {
                 steps {
