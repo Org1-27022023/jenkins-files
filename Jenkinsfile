@@ -8,49 +8,31 @@ pipeline {
     stages {
         stage('Checkout code') {
             steps {
-                timestamps {
-                    git branch: 'development', credentialsId: 'git cred', url: 'https://github.com/Organi2/maven-web-application.git'
-                }
+                git branch: 'development', credentialsId: 'git cred', url: 'https://github.com/Organi2/maven-web-application.git'
             }
         }
 
-        stage('Check Java Version') {
+        stage('build package') {
             steps {
-                timestamps {
-                    sh 'java --version'
-                }
+                bat "mvn clean package"
             }
         }
 
-        stage('Build Package') {
+        stage('sonar report') {
             steps {
-                timestamps {
-                    bat "mvn clean package"
-                }
+                bat "mvn sonar:sonar"
             }
         }
 
-        stage('Sonar Report') {
+        stage('upload artifacts') {
             steps {
-                timestamps {
-                    bat "mvn sonar:sonar"
-                }
+                bat "mvn deploy"
             }
         }
 
-        stage('Upload Artifacts') {
+        stage('deploy to tomcat') {
             steps {
-                timestamps {
-                    bat "mvn deploy"
-                }
-            }
-        }
-
-        stage('Deploy to Tomcat') {
-            steps {
-                timestamps {
-                    bat "copy C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\declarative\\target\\maven-web-application.war C:\\Users\\ADMIN\\Downloads\\apache-tomcat-9.0.73\\apache-tomcat-9.0.73\\webapps"
-                }
+                bat "copy C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\declarative\\target\\maven-web-application.war C:\\Users\\ADMIN\\Downloads\\apache-tomcat-9.0.73\\apache-tomcat-9.0.73\\webapps"
             }
         }
     }
