@@ -33,6 +33,12 @@ bat "mvn deploy"
 }
 }
 
+stage('shell'){
+steps{
+bat "dir"
+}
+}
+
 stage('upload artifacts'){
 steps{
 bat "copy C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\declarative\\target\\maven-web-application.war C:\\Users\\ADMIN\\Downloads\\apache-tomcat-9.0.73\\apache-tomcat-9.0.73\\webapps"
