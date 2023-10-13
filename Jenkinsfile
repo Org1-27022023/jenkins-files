@@ -3,7 +3,6 @@ pipeline {
     
     tools {
         maven "maven 3.9.4"
-        jdk "jdk-11" // You can specify the desired JDK version here
     }
 
     stages {
@@ -18,7 +17,7 @@ pipeline {
         stage('Check Java Version') {
             steps {
                 timestamps {
-                    sh 'java -version'
+                    sh 'java --version'
                 }
             }
         }
